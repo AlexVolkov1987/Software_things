@@ -1,0 +1,24 @@
+G21 ;mm units
+G90 ;absolute positioning
+M82 ;absolute positioning for extruder
+G92 E0 ;reset extruder length
+
+G28 ;homing
+
+M104 S{temperature} ;set hotend temp
+M140 S{bed_temperature} ;set bed temp
+
+G0 F3000 X0 Y0 Z40 ;up head to 40mm
+
+M109 S{temperature} ;wait hotend temp
+M190 S{bed_temperature} ;wait bed temp
+
+G1 F60 E45 ;slow extrude
+G1 F3000 X35 Y0 Z0.2 ;go to first point
+G92 E0 ;reset extruder length
+G1 F225 X55 E3 ;first line
+G92 E0 ;reset extruder length
+G1 F2100 X75 E3 ;second line
+G1 Z0 X80 F500 ;cleanup
+G92 E0 ;reset extruder length
+G1 F7200 ;set 120mm/s velocity for next moves
