@@ -8,4 +8,5 @@ G90 ;absolute positioning
 G0 F7200 X10 Y10; go to origin part one
 G0 F300 X0 Y0; go to origin part two
 M107 ;turn off model fan
+{if max_layer_z < 135}G0 Z135{endif}
 M84 ; disable motors
