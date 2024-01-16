@@ -5,7 +5,7 @@
 ######################## Basic USB port settings ########################
 
 usb_uart_baudrate                                       115200
-module_uart_baudrate									500000
+module_uart_baudrate									500000			# For bananaPi host
 
 ######################## Basic motion configuration ########################
 
@@ -28,7 +28,7 @@ default_seek_rate_mmps 						80              			# Default speed (mm/sec) for G0 
 
 # Acceleration configuration
 acceleration 								3000 						# Acceleration in mm/s^2
-z_acceleration 								15 							# Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
+z_acceleration 								15							# Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
 junction_deviation 							0.01 						# Junction deviation value
 z_junction_deviation 						0.01 						# For Z only moves, -1 uses junction_deviation, zero disables junction_deviation on z moves DO NOT SET ON A DELTA
 
@@ -57,7 +57,7 @@ beta_max_rate_mmps 							200							# Maximum rate in mm/sec
 gamma_step_pin 								d.3             			# Pin for gamma/Z stepper step signal
 gamma_dir_pin 								d.7!             			# Pin for gamma/Z stepper direction, add '!' to reverse direction
 gamma_en_pin 								d.4             			# Pin for gamma/Z enable
-gamma_max_rate_mmps 						5.0          				# Maxmimum rate in mm/sec
+gamma_max_rate_mmps 						5	          				# Maxmimum rate in mm/sec
 
 
 ######################## Extruder module configuration ########################
@@ -69,7 +69,7 @@ extruder.hotend.acceleration                  10000           			# Acceleration 
 extruder.hotend.max_speed                     100            			# Maximum speed in mm/s
 
 extruder.hotend.step_pin                      c.2          				# Pin for extruder step signal
-extruder.hotend.dir_pin                       c.1!          				# Pin for extruder dir signal ( add '!' to reverse direction )
+extruder.hotend.dir_pin                       c.1!          			# Pin for extruder dir signal ( add '!' to reverse direction )
 extruder.hotend.en_pin                        c.0          				# Pin for extruder enable signal
 
 # Extruder offset
@@ -319,8 +319,11 @@ manual_table_points_y                   5|5|195|195
 
 ######################## Standby ########################
 
-printer.idle_time 								120	 					# Время простоя, сек
+printer.idle_time 								600	 					# Время простоя, сек
 printer.temp_to_standby 						40 						# Температура, ниже которой возможен Standby. Контролируются все описанные в конфиге нагреватели
+printer.standby_led_num 						0						# Номер светодиода дисплея для задания яркости и цвета в режиме Standby
+printer.standby_led_rgb 						60|60|60 				# Интенсивность подсветки RGB. 60|60|60 - бледно белое свечение, достаточное для понимания, что принтер включен.
+
 ######################## Display Config ########################
 
 panel.enable                                 	true             		# set to true to enable the panel code
@@ -432,4 +435,4 @@ simpledriver.drv5.enable	      				false
 
 preheat.names                           PLA|ABS|PETG|Wax
 preheat.head_temps                      200|230|220|80
-preheat.bed_temps                       65|90|65|0
+preheat.bed_temps                       55|90|65|0
